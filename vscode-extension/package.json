@@ -41,7 +41,7 @@
     "@types/node": "^8.10.53",
     "@types/vscode": "^1.37.0",
     "glob": "^7.1.4",
-    "json5": "^2.1.0",
+    "json5": "^2.2.2",
     "mocha": "^6.2.0",
     "ts-loader": "^6.0.4",
     "typescript": "^3.6.2",
