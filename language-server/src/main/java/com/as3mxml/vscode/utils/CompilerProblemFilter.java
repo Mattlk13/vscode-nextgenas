@@ -1,5 +1,5 @@
 /*
-Copyright 2016-2019 Bowler Hat LLC
+Copyright 2016-2021 Bowler Hat LLC
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
@@ -18,26 +18,21 @@ package com.as3mxml.vscode.utils;
 import org.apache.royale.compiler.problems.FontEmbeddingNotSupported;
 import org.apache.royale.compiler.problems.ICompilerProblem;
 
-public class CompilerProblemFilter
-{
-	public CompilerProblemFilter()
-	{
+public class CompilerProblemFilter {
+	public CompilerProblemFilter() {
 	}
 
 	public boolean royaleProblems = true;
 
-	public boolean isAllowed(ICompilerProblem problem)
-	{
-        if (!royaleProblems)
-        {
-            //the following errors get special treatment if the framework SDK's
-            //compiler isn't Falcon
+	public boolean isAllowed(ICompilerProblem problem) {
+		if (!royaleProblems) {
+			// the following errors get special treatment if the framework SDK's
+			// compiler isn't Falcon
 
-            if (problem.getClass().equals(FontEmbeddingNotSupported.class))
-            {
-                //ignore this error because the framework SDK can embed fonts
-                return false;
-            }
+			if (problem.getClass().equals(FontEmbeddingNotSupported.class)) {
+				// ignore this error because the framework SDK can embed fonts
+				return false;
+			}
 		}
 		return true;
 	}

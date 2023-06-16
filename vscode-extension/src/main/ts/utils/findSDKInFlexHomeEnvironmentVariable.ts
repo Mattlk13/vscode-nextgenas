@@ -1,5 +1,5 @@
 /*
-Copyright 2016-2019 Bowler Hat LLC
+Copyright 2016-2021 Bowler Hat LLC
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
@@ -13,19 +13,15 @@ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and
 limitations under the License.
 */
-import * as fs from "fs";
-import * as path from "path";
 import validateFrameworkSDK from "./validateFrameworkSDK";
 
 const ENVIRONMENT_VARIABLE_FLEX_HOME = "FLEX_HOME";
 
-export default function findSDKInFlexHomeEnvironmentVariable(): string
-{
-	if(ENVIRONMENT_VARIABLE_FLEX_HOME in process.env)
-	{
-		let flexHome = process.env.FLEX_HOME;
-		//this may return null
-		return validateFrameworkSDK(flexHome);
-	}
-	return null;
+export default function findSDKInFlexHomeEnvironmentVariable(): string {
+  if (ENVIRONMENT_VARIABLE_FLEX_HOME in process.env) {
+    let flexHome = process.env.FLEX_HOME;
+    //this may return null
+    return validateFrameworkSDK(flexHome);
+  }
+  return null;
 }

@@ -1,5 +1,5 @@
 /*
-Copyright 2016-2019 Bowler Hat LLC
+Copyright 2016-2021 Bowler Hat LLC
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
@@ -15,7 +15,6 @@ limitations under the License.
 */
 package com.as3mxml.asconfigc.animate;
 
-public class AnimateOptions
-{
+public class AnimateOptions {
 	public static final String FILE = "file";
 }

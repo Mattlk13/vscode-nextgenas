@@ -1,5 +1,5 @@
 /*
-Copyright 2016-2019 Bowler Hat LLC
+Copyright 2016-2021 Bowler Hat LLC
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
@@ -15,8 +15,7 @@ limitations under the License.
 */
 package com.as3mxml.asconfigc;
 
-public class TopLevelFields
-{
+public class TopLevelFields {
 	public static final String TYPE = "type";
 	public static final String CONFIG = "config";
 	public static final String COMPILER_OPTIONS = "compilerOptions";
@@ -27,4 +26,8 @@ public class TopLevelFields
 	public static final String AIR_OPTIONS = "airOptions";
 	public static final String HTML_TEMPLATE = "htmlTemplate";
 	public static final String ANIMATE_OPTIONS = "animateOptions";
+	public static final String EXTENDS = "extends";
+	public static final String MAIN_CLASS = "mainClass";
+	public static final String MODULES = "modules";
+	public static final String WORKERS = "workers";
 }

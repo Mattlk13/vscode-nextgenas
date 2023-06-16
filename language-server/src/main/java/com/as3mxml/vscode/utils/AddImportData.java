@@ -1,5 +1,5 @@
 /*
-Copyright 2016-2019 Bowler Hat LLC
+Copyright 2016-2021 Bowler Hat LLC
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
@@ -17,10 +17,8 @@ package com.as3mxml.vscode.utils;
 
 import org.eclipse.lsp4j.Position;
 
-public class AddImportData
-{
-	public AddImportData(Position position, String indent, String newLines, ImportRange importRange)
-	{
+public class AddImportData {
+	public AddImportData(Position position, String indent, String newLines, ImportRange importRange) {
 		this.position = position;
 		this.indent = indent;
 		this.newLines = newLines;

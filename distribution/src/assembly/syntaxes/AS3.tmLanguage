@@ -28,6 +28,10 @@
 		</dict>
 		<dict>
 			<key>include</key>
+			<string>#namespace_declaration</string>
+		</dict>
+		<dict>
+			<key>include</key>
 			<string>#import</string>
 		</dict>
 		<dict>
@@ -257,10 +261,31 @@
 				</dict>
 			</array>
 		</dict>
+		<key>namespace_declaration</key>
+		<dict>
+			<key>captures</key>
+			<dict>
+				<key>2</key>
+				<dict>
+					<key>name</key>
+					<string>storage.modifier.actionscript.3</string>
+				</dict>
+				<key>3</key>
+				<dict>
+					<key>name</key>
+					<string>storage.modifier.actionscript.3</string>
+				</dict>
+			</dict>
+			<key>match</key>
+			<string>(?x) ((\w+)\s+)? (namespace) \s+ (?:[A-Za-z0-9_\$]+)</string>
+			<key>name</key>
+			<string>meta.namespace_declaration.actionscript.3</string>
+		</dict>
 		<key>class_declaration</key>
 		<dict>
 			<key>begin</key>
-			<string>(?x) \b(class)\b \s+ ([\.\w]+)</string>
+			<!-- dots are displayed in hover tooltips -->
+			<string>(?x) \b(class)\b \s+ ([\.\w]+|\*)</string>
 			<key>beginCaptures</key>
 			<dict>
 				<key>1</key>
@@ -442,7 +467,7 @@
 		<key>control_keywords</key>
 		<dict>
 			<key>match</key>
-			<string>\b(if|else|do|while|for|each|continue|return|switch|case|default|break|try|catch|finally|throw)\b</string>
+			<string>\b(if|else|do|while|for|each|continue|return|switch|case|default|break|try|catch|finally|throw|with)\b</string>
 			<key>name</key>
 			<string>keyword.control.actionscript.3</string>
 		</dict>
@@ -514,7 +539,7 @@
 		<key>parameters</key>
 		<dict>
 			<key>begin</key>
-			<string>(\.\.\.)?\s*([A-Za-z0-9_\$]+)(?:\s*(\:)\s*([A-Z\$][A-Za-z0-9_\$]+))?(?:\s*(=))?</string>
+			<string>(\.\.\.)?\s*([A-Za-z\_\$][A-Za-z0-9_\$]*)(?:\s*(\:)\s*(?:(?:([A-Za-z\$][A-Za-z0-9_\$]+(?:\.[A-Za-z\$][A-Za-z0-9_\$]+)*)(?:\.&lt;([A-Za-z\$][A-Za-z0-9_\$]+(?:\.[A-Za-z\$][A-Za-z0-9_\$]+)*)&gt;)?)|(\*)))?(?:\s*(=))?</string>
 			<key>end</key>
 			<string>,|(?=\))</string>
 			<key>beginCaptures</key>
@@ -537,9 +562,19 @@
 				<key>4</key>
 				<dict>
 					<key>name</key>
-					<string>support.class.actionscript.3</string>
+					<string>support.type.actionscript.3</string>
 				</dict>
 				<key>5</key>
+				<dict>
+					<key>name</key>
+					<string>support.type.actionscript.3</string>
+				</dict>
+				<key>6</key>
+				<dict>
+					<key>name</key>
+					<string>support.type.actionscript.3</string>
+				</dict>
+				<key>7</key>
 				<dict>
 					<key>name</key>
 					<string>keyword.operator.actionscript.3</string>
@@ -743,6 +778,7 @@
 		<key>interface_declaration</key>
 		<dict>
 			<key>begin</key>
+			<!-- dots are displayed in hover tooltips -->
 			<string>(?x) \b(interface)\b \s+ ([\.\w]+)</string>
 			<key>beginCaptures</key>
 			<dict>
@@ -828,7 +864,7 @@
 		<key>method</key>
 		<dict>
 			<key>begin</key>
-			<string>(?x) (^|\s+) ((\w+)\s+)? ((\w+)\s+)? ((\w+)\s+)? (\w+) (?=\s+\bfunction\b)</string>
+			<string>(?x) (^|\s+) ((\w+)\s+)? ((\w+)\s+)? ((\w+)\s+)? ((\w+)\s+)? (?=\bfunction\b)</string>
 			<key>beginCaptures</key>
 			<dict>
 				<key>3</key>
@@ -893,6 +929,10 @@
 				<dict>
 					<key>include</key>
 					<string>#class</string>
+				</dict>
+				<dict>
+					<key>include</key>
+					<string>#namespace_declaration</string>
 				</dict>
 				<dict>
 					<key>include</key>
@@ -1147,6 +1187,10 @@
 					<key>include</key>
 					<string>#interface</string>
 				</dict>
+				<dict>
+					<key>include</key>
+					<string>#namespace_declaration</string>
+				</dict>
 			</array>
 		</dict>
 		<key>package_name</key>
@@ -1230,19 +1274,24 @@
 					<key>name</key>
 					<string>keyword.operator.actionscript.3</string>
 				</dict>
+				<key>2</key>
+				<dict>
+					<key>name</key>
+					<string>support.type.actionscript.3</string>
+				</dict>
 				<key>3</key>
 				<dict>
 					<key>name</key>
 					<string>support.type.actionscript.3</string>
 				</dict>
-				<key>5</key>
+				<key>4</key>
 				<dict>
 					<key>name</key>
 					<string>support.type.actionscript.3</string>
 				</dict>
 			</dict>
 			<key>match</key>
-			<string>(\:)\s*(([\.\w]+)(\.&lt;([\.\w]+)&gt;)?|\*)</string>
+			<string>(\:)\s*(?:([A-Za-z\$][A-Za-z0-9_\$]+(?:\.[A-Za-z\$][A-Za-z0-9_\$]+)*)(?:\.&lt;([A-Za-z\$][A-Za-z0-9_\$]+(?:\.[A-Za-z\$][A-Za-z0-9_\$]+)*)&gt;)?)|(\*)</string>
 		</dict>
 		<key>strings</key>
 		<dict>

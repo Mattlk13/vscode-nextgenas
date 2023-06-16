@@ -28,6 +28,8 @@
         <include>snippets/*</include>
         <include>bin/*</include>
         <include>jsfl/*</include>
+        <include>frameworks/*</include>
+        <include>playerglobal_docs/*</include>
       </includes>
     </fileSet>
     <fileSet>
@@ -73,6 +75,7 @@
         <include>json-schema-validator*.jar</include>
         <include>slf4j*.jar</include>
         <include>jackson*.jar</include>
+        <include>dom4j*.jar</include>
       </includes>
     </fileSet>
     <fileSet>
@@ -81,26 +84,13 @@
       <includes>
         <include>commons-*.jar</include>
         <include>compiler-*.jar</include>
+        <include>formatter-*.jar</include>
+        <include>linter-*.jar</include>
         <include>antlr-*.jar</include>
         <include>guava-*.jar</include>
         <include>jburg-*.jar</include>
         <include>jflex-*.jar</include>
         <include>lzma-sdk-*.jar</include>
-      </includes>
-    </fileSet>
-    <fileSet>
-      <directory>../swf-debugger/target</directory>
-      <outputDirectory>bin</outputDirectory>
-      <includes>
-        <include>swf-debugger.jar</include>
-      </includes>
-    </fileSet>
-    <fileSet>
-      <directory>../swf-debugger/target</directory>
-      <outputDirectory>bundled-compiler</outputDirectory>
-      <includes>
-        <include>debugger-*.jar</include>
-        <include>swfutils-*.jar</include>
       </includes>
     </fileSet>
     <fileSet>
@@ -115,6 +105,7 @@
       <outputDirectory>.</outputDirectory>
       <includes>
         <include>extension.js</include>
+        <include>extension.js.map</include>
       </includes>
     </fileSet>
   </fileSets>

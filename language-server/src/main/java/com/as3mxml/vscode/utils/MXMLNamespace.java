@@ -1,6 +1,6 @@
 
 /*
-Copyright 2016-2019 Bowler Hat LLC
+Copyright 2016-2021 Bowler Hat LLC
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
@@ -16,10 +16,8 @@ limitations under the License.
 */
 package com.as3mxml.vscode.utils;
 
-public class MXMLNamespace
-{
-	public MXMLNamespace(String prefix, String uri)
-	{
+public class MXMLNamespace {
+	public MXMLNamespace(String prefix, String uri) {
 		this.prefix = prefix;
 		this.uri = uri;
 	}

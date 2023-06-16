@@ -1,5 +1,5 @@
 /*
-Copyright 2016-2019 Bowler Hat LLC
+Copyright 2016-2021 Bowler Hat LLC
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
@@ -17,22 +17,17 @@ import * as vscode from "vscode";
 
 let savedPassword = null;
 
-export default async function saveSessionPassword(): Promise<string>
-{
-	do
-	{
-		savedPassword = await vscode.window.showInputBox(
-		{
-			placeHolder: "Password",
-			prompt: "Save your password for current session",
-			value: savedPassword,
-			password: true,
-		});
-		if(savedPassword === undefined)
-		{
-			break;
-		}
-	}
-	while(!savedPassword);
-	return Promise.resolve(savedPassword);
+export default async function saveSessionPassword(): Promise<string> {
+  do {
+    savedPassword = await vscode.window.showInputBox({
+      placeHolder: "Password",
+      prompt: "Save your password for current session",
+      value: savedPassword,
+      password: true,
+    });
+    if (savedPassword === undefined) {
+      break;
+    }
+  } while (!savedPassword);
+  return Promise.resolve(savedPassword);
 }

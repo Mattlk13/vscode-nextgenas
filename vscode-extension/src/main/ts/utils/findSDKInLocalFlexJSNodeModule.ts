@@ -1,5 +1,5 @@
 /*
-Copyright 2016-2019 Bowler Hat LLC
+Copyright 2016-2021 Bowler Hat LLC
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
@@ -17,13 +17,15 @@ import * as path from "path";
 import * as vscode from "vscode";
 import validateFrameworkSDK from "./validateFrameworkSDK";
 
-export default function findSDKInLocalFlexJSNodeModule(): string
-{
-	if(vscode.workspace.workspaceFolders === undefined)
-	{
-		return null;
-	}
-	let nodeModule = path.join(vscode.workspace.workspaceFolders[0].uri.fsPath, "node_modules", "flexjs");
-	//this may return null
-	return validateFrameworkSDK(nodeModule);
+export default function findSDKInLocalFlexJSNodeModule(): string {
+  if (vscode.workspace.workspaceFolders === undefined) {
+    return null;
+  }
+  let nodeModule = path.join(
+    vscode.workspace.workspaceFolders[0].uri.fsPath,
+    "node_modules",
+    "flexjs"
+  );
+  //this may return null
+  return validateFrameworkSDK(nodeModule);
 }

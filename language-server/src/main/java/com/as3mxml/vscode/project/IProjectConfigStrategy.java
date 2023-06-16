@@ -1,5 +1,5 @@
 /*
-Copyright 2016-2019 Bowler Hat LLC
+Copyright 2016-2021 Bowler Hat LLC
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
@@ -22,12 +22,17 @@ import org.eclipse.lsp4j.WorkspaceFolder;
 /**
  * Loads the configuration for a project. 
  */
-public interface IProjectConfigStrategy
-{
+public interface IProjectConfigStrategy {
     /**
      * The project's workspace folder.
      */
     WorkspaceFolder getWorkspaceFolder();
+
+    /**
+     * The project's root path (which may not necessarily be the same as the
+     * root of the workspace folder).
+     */
+    Path getProjectPath();
 
     /**
      * If the compiler reports a problem without a file path, use this value.

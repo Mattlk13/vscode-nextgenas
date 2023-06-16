@@ -1,5 +1,5 @@
 /*
-Copyright 2016-2019 Bowler Hat LLC
+Copyright 2016-2021 Bowler Hat LLC
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
@@ -20,13 +20,10 @@ import java.util.List;
 
 import com.fasterxml.jackson.databind.JsonNode;
 
-public class JsonUtils
-{
-	public static List<String> jsonNodeToListOfStrings(JsonNode node)
-	{
+public class JsonUtils {
+	public static List<String> jsonNodeToListOfStrings(JsonNode node) {
 		ArrayList<String> result = new ArrayList<>();
-		for(int i = 0, size = node.size(); i < size; i++)
-		{
+		for (int i = 0, size = node.size(); i < size; i++) {
 			result.add(node.get(i).asText());
 		}
 		return result;

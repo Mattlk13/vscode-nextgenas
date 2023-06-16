@@ -1,5 +1,5 @@
 /*
-Copyright 2016-2019 Bowler Hat LLC
+Copyright 2016-2021 Bowler Hat LLC
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
@@ -18,8 +18,7 @@ package com.as3mxml.vscode.services;
 import org.eclipse.lsp4j.jsonrpc.services.JsonNotification;
 import org.eclipse.lsp4j.services.LanguageClient;
 
-public interface ActionScriptLanguageClient extends LanguageClient
-{
+public interface ActionScriptLanguageClient extends LanguageClient {
 	@JsonNotification("as3mxml/clearCompilerShellOutput")
 	void clearCompilerShellOutput();
 

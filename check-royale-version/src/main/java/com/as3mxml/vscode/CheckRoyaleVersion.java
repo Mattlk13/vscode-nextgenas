@@ -1,5 +1,5 @@
 /*
-Copyright 2016-2019 Bowler Hat LLC
+Copyright 2016-2021 Bowler Hat LLC
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
@@ -21,58 +21,45 @@ import org.apache.royale.compiler.tree.as.IASNode;
  * Checks that the Apache Royale version is compatible with the
  * ActionScript/MXML language server.
  */
-public class CheckRoyaleVersion
-{
+public class CheckRoyaleVersion {
     public static final int GOOD_VERSION = 0;
     public static final int BAD_VERSION = 100;
     public static final int EXCEPTION_VERSION = 101;
 
     private static final int MIN_MAJOR = 0;
     private static final int MIN_MINOR = 9;
-    private static final int MIN_REVISION = 6;
+    private static final int MIN_REVISION = 10;
 
-    public static void main(String[] args)
-    {
-        try
-        {
+    public static void main(String[] args) {
+        try {
             String sdkVersion = IASNode.class.getPackage().getImplementationVersion();
-            //remove -SNAPSHOT, if present. then, split on the "." character.
+            // remove -SNAPSHOT, if present. then, split on the "." character.
             String[] versionParts = sdkVersion.split("-")[0].split("\\.");
             int major = 0;
             int minor = 0;
             int revision = 0;
-            if (versionParts.length >= 3)
-            {
+            if (versionParts.length >= 3) {
                 major = Integer.parseInt(versionParts[0]);
                 minor = Integer.parseInt(versionParts[1]);
                 revision = Integer.parseInt(versionParts[2]);
             }
-            if (major > MIN_MAJOR)
-            {
-                //major version is valid
+            if (major > MIN_MAJOR) {
+                // major version is valid
                 System.exit(GOOD_VERSION);
-            }
-            else if (major == MIN_MAJOR)
-            {
-                if (minor > MIN_MINOR)
-                {
-                    //minor version is valid
+            } else if (major == MIN_MAJOR) {
+                if (minor > MIN_MINOR) {
+                    // minor version is valid
                     System.exit(GOOD_VERSION);
-                }
-                else if (minor == MIN_MINOR)
-                {
-                    if (revision >= MIN_REVISION)
-                    {
-                        //revision is valid
+                } else if (minor == MIN_MINOR) {
+                    if (revision >= MIN_REVISION) {
+                        // revision is valid
                         System.exit(GOOD_VERSION);
                     }
                 }
             }
-            //version is too old!
+            // version is too old!
             System.exit(BAD_VERSION);
-        }
-        catch(Exception e)
-        {
+        } catch (Exception e) {
             System.exit(EXCEPTION_VERSION);
         }
     }

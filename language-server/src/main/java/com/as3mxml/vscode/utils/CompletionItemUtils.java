@@ -1,5 +1,5 @@
 /*
-Copyright 2016-2019 Bowler Hat LLC
+Copyright 2016-2021 Bowler Hat LLC
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
@@ -15,35 +15,47 @@ limitations under the License.
 */
 package com.as3mxml.vscode.utils;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.apache.royale.compiler.constants.IASKeywordConstants;
 import org.apache.royale.compiler.definitions.IDefinition;
+import org.apache.royale.compiler.definitions.metadata.IDeprecationInfo;
 import org.apache.royale.compiler.projects.ICompilerProject;
 import org.eclipse.lsp4j.CompletionItem;
 import org.eclipse.lsp4j.CompletionItemKind;
+import org.eclipse.lsp4j.CompletionItemTag;
 import org.eclipse.lsp4j.InsertTextFormat;
+import org.eclipse.lsp4j.MarkupContent;
+import org.eclipse.lsp4j.MarkupKind;
 
-public class CompletionItemUtils
-{
-	public static CompletionItem createDefinitionItem(IDefinition definition, ICompilerProject project)
-	{
-		CompletionItem item = new CompletionItem();
-		item.setKind(LanguageServerCompilerUtils.getCompletionItemKindFromDefinition(definition));
-		item.setDetail(DefinitionTextUtils.definitionToDetail(definition, project));
-		item.setLabel(definition.getBaseName());
-		String docs = DefinitionDocumentationUtils.getDocumentationForDefinition(definition, false);
-		if (docs != null)
-		{
-			item.setDocumentation(docs);
-		}
-		return item;
-	}
+public class CompletionItemUtils {
+    public static CompletionItem createDefinitionItem(IDefinition definition, ICompilerProject project) {
+        CompletionItem item = new CompletionItem();
+        item.setKind(LanguageServerCompilerUtils.getCompletionItemKindFromDefinition(definition));
+        item.setDetail(DefinitionTextUtils.definitionToDetail(definition, project));
+        item.setLabel(definition.getBaseName());
+        String docs = DefinitionDocumentationUtils.getDocumentationForDefinition(definition, true,
+                project.getWorkspace(), false);
+        if (docs != null) {
+            item.setDocumentation(new MarkupContent(MarkupKind.MARKDOWN, docs));
+        }
 
-	public static CompletionItem createPackageBlockItem(String packageName, boolean asSnippet)
-	{
-		StringBuilder labelBuilder = new StringBuilder();
+        List<CompletionItemTag> tags = new ArrayList<>();
+        IDeprecationInfo deprecationInfo = definition.getDeprecationInfo();
+        if (deprecationInfo != null) {
+            tags.add(CompletionItemTag.Deprecated);
+        }
+        if (tags.size() > 0) {
+            item.setTags(tags);
+        }
+        return item;
+    }
+
+    public static CompletionItem createPackageBlockItem(String packageName, boolean asSnippet) {
+        StringBuilder labelBuilder = new StringBuilder();
         labelBuilder.append(IASKeywordConstants.PACKAGE);
-        if (packageName.length() > 0)
-        {
+        if (packageName.length() > 0) {
             labelBuilder.append(" ");
             labelBuilder.append(packageName);
         }
@@ -51,8 +63,7 @@ public class CompletionItemUtils
 
         StringBuilder insertTextBuilder = new StringBuilder();
         insertTextBuilder.append(IASKeywordConstants.PACKAGE);
-        if (packageName.length() > 0)
-        {
+        if (packageName.length() > 0) {
             insertTextBuilder.append(" ");
             insertTextBuilder.append(packageName);
         }
@@ -60,8 +71,7 @@ public class CompletionItemUtils
         insertTextBuilder.append("{");
         insertTextBuilder.append("\n");
         insertTextBuilder.append("\t");
-        if (asSnippet)
-        {
+        if (asSnippet) {
             insertTextBuilder.append("$0");
         }
         insertTextBuilder.append("\n");
@@ -71,10 +81,9 @@ public class CompletionItemUtils
         packageItem.setKind(CompletionItemKind.Module);
         packageItem.setLabel(labelBuilder.toString());
         packageItem.setInsertText(insertTextBuilder.toString());
-        if (asSnippet)
-        {
+        if (asSnippet) {
             packageItem.setInsertTextFormat(InsertTextFormat.Snippet);
-		}
-		return packageItem;
-	}
+        }
+        return packageItem;
+    }
 }

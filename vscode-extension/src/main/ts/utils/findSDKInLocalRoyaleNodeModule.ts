@@ -1,5 +1,5 @@
 /*
-Copyright 2016-2019 Bowler Hat LLC
+Copyright 2016-2021 Bowler Hat LLC
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
@@ -19,27 +19,24 @@ import validateFrameworkSDK from "./validateFrameworkSDK";
 
 const NODE_MODULES = "node_modules";
 const MODULE_ORG = "@apache-royale";
-const MODULE_NAMES =
-[
-	"royale-js",
-	"royale-js-swf",
-];
+const MODULE_NAMES = ["royale-js", "royale-js-swf"];
 
-export default function findSDKInLocalRoyaleNodeModule(): string
-{
-	if(vscode.workspace.workspaceFolders === undefined)
-	{
-		return null;
-	}
-	for(let i = 0, count = MODULE_NAMES.length; i < count; i++)
-	{
-		let moduleName = MODULE_NAMES[i];
-		let nodeModule = path.join(vscode.workspace.workspaceFolders[0].uri.fsPath, NODE_MODULES, MODULE_ORG, moduleName);
-		nodeModule = validateFrameworkSDK(nodeModule);
-		if(nodeModule !== null)
-		{
-			return nodeModule;
-		}
-	}
-	return null;
+export default function findSDKInLocalRoyaleNodeModule(): string {
+  if (vscode.workspace.workspaceFolders === undefined) {
+    return null;
+  }
+  for (let i = 0, count = MODULE_NAMES.length; i < count; i++) {
+    let moduleName = MODULE_NAMES[i];
+    let nodeModule = path.join(
+      vscode.workspace.workspaceFolders[0].uri.fsPath,
+      NODE_MODULES,
+      MODULE_ORG,
+      moduleName
+    );
+    nodeModule = validateFrameworkSDK(nodeModule);
+    if (nodeModule !== null) {
+      return nodeModule;
+    }
+  }
+  return null;
 }
